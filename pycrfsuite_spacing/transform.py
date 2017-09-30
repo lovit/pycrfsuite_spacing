@@ -1,9 +1,10 @@
 class TemplateGenerator:
-    def __init__(self, begin=-2, end=2, min_range_length=2, max_range_length=5):
+    def __init__(self, begin=-2, end=2, min_range_length=2, max_range_length=5, remove_partial=True):
         self.begin = begin
         self.end = end
         self.min_range_length = min_range_length
         self.max_range_length = max_range_length
+        self.remove_partial = remove_partial
         self._generate_token_templates()
     
     def _generate_token_templates(self):
@@ -14,6 +15,7 @@ class TemplateGenerator:
                 if length < self.min_range_length or length > self.max_range_length: 
                     continue
                 if b * e > 0: continue
+                if self.remove_partial and b * e == 0: continue
                 self.templates.append((b, e))
     
     def __iter__(self):
