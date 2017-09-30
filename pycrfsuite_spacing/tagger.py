@@ -43,14 +43,18 @@ class PyCRFSuiteSpacing:
         self.load_tagger(model_fname)
     
     def _scan_features(self, docs):
+        from collections import defaultdict
         min_count = self.params['feature.minfreq']
+        
+        feature_vocabulary = defaultdict(int)
         if self.verbose:
             print('feature scanning: begin with min_count={}'.format(min_count))
-            
-        from collections import defaultdict
-        feature_vocabulary = defaultdict(int)
+        
         for sent in docs:
             x, _ = sent_to_xy(sent, self.to_feature)
+            for xi in x:
+                for xij in xi:
+                    feature_vocabulary[xij] += 1
         if self.verbose:
             print('feature scanning ... {} -> '.format(len(feature_vocabulary)), end='')
             
