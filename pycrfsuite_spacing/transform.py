@@ -1,5 +1,5 @@
 class TemplateGenerator:
-    def __init__(self, begin=-2, end=2, min_range_length=2, max_range_length=5, remove_partial=True):
+    def __init__(self, begin=-2, end=2, min_range_length=2, max_range_length=5, remove_partial=False):
         self.begin = begin
         self.end = end
         self.min_range_length = min_range_length
