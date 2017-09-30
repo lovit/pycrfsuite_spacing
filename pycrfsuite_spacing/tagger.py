@@ -47,9 +47,10 @@ class PyCRFSuiteSpacing:
         if self.verbose:
             print('feature scanning: begin with min_count={}'.format(min_count))
             
-        from collections import Counter
-        train_x, _ = docs_to_xy(docs, self.to_feature)
-        feature_vocabulary = Counter((xij for x in train_x for xi in x for xij in xi))        
+        from collections import defaultdict
+        feature_vocabulary = defaultdict(int)
+        for sent in docs:
+            x, _ = sent_to_xy(sent, self.to_feature)
         if self.verbose:
             print('feature scanning ... {} -> '.format(len(feature_vocabulary)), end='')
             
