@@ -4,9 +4,6 @@
 
 주어진 문장을 feature로 변환하기 위해 다음의 두 가지 클래스를 import 합니다. 
 
-    import sys
-    sys.path.append('../')
-
     from pycrfsuite_spacing import TemplateGenerator
     from pycrfsuite_spacing import CharacterFeatureTransformer
 
