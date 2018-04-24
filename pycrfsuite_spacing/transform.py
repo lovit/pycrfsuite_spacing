@@ -44,6 +44,8 @@ class CharacterFeatureTransformer:
 
 def sent_to_chartags(sent, nonspace=0, space=1):
     chars = sent.replace(' ','')
+    if not chars:
+        return '', []
     tags = [nonspace]*(len(chars) - 1) + [space]
     idx = 0
     for c in sent:

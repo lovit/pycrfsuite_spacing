@@ -5,13 +5,15 @@ from .transform import sent_to_xy
 class PyCRFSuiteSpacing:
     def __init__(self, to_feature, tagger=None, verbose=False,
                  feature_vocabulary=None,
-                 feature_minfreq=0, max_iterations=100):
+                 feature_minfreq=0, max_iterations=100, l1_cost=0, l2_cost=1.0):
         self.tagger = tagger
         self.to_feature = to_feature
         self.verbose = verbose
         self.feature_vocabulary = feature_vocabulary
         self.params = {'feature.minfreq':max(0,feature_minfreq),
-                       'max_iterations':max(1, max_iterations)
+                       'max_iterations':max(1, max_iterations),
+                       'c1':max(0, l1_cost),
+                       'c2':max(0, l2_cost)
                       }
         
         if type(tagger) == 'str':
@@ -32,8 +34,6 @@ class PyCRFSuiteSpacing:
             print('begin appending data to trainer')
         for sent in docs:
             x, y = sent_to_xy(sent, self.to_feature)
-            if len(x) != len(y):
-                continue
             x = [[xij for xij in xi if xij in self.feature_vocabulary] for xi in x]
             trainer.append(x, y)
         if self.verbose:
