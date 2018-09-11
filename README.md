@@ -11,10 +11,13 @@
 
 TemplateGenerator와 FeatureTransformer를 이용하면 띄어쓰기가 포함된 문장을 다음과 같이 template에 의하여 정의되는 character feature로 변환해 줍니다. 두 칸 이상의 띄어쓰기는 없다고 가정합니다.
 
-    to_feature = CharacterFeatureTransformer(TemplateGenerator(begin=-2, 
-                                                               end=2,
-                                                               min_range_length=3,
-                                                               max_range_length=3))
+    to_feature = CharacterFeatureTransformer(
+        TemplateGenerator(
+            begin=-2,
+            end=2,
+            min_range_length=3,
+            max_range_length=3)
+        )
 
     x, y = sent_to_xy('이것도 너프해 보시지', to_feature)
     pprint(x)
