@@ -103,3 +103,7 @@ correct('이건진짜좋은영화라라랜드진짜좋은영화')
 
 - python-crfsuite >= 0.9.2
 
+## License
+
+python-crfsuite is licensed under MIT license. CRFsuite C/C++ library is licensed under BSD license. Therefore `pycrfsuite_spacing` package is licensed under MIT license same as package B is.
+
